@@ -1,0 +1,18 @@
+{
+    "name": "dawan/agenda",
+    "description": "The best agenda manager ever !",
+    "type": "workshop",
+    "require": {
+        "psr/http-message": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.4"
+    },
+    "license": "WTFPL",
+    "authors": [
+        {
+            "name": "\"Pierre Bretéché",
+            "email": "pbreteche@dawan.fr"
+        }
+    ]
+}
