@@ -1,0 +1,4 @@
+#! /usr/bin/php
+
+<?php
+exec('php -S localhost:1234 -t public/ router.php');

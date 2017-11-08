@@ -2,11 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-
-$request = new \GuzzleHttp\Psr7\Request('GET', '/');
+$request = \Dawan\http\RequestFactory::createFromGlobals();
 $agendaApp = new \Dawan\AgendaApp();
-$agendaApp->handle($request);
-$agendaApp->sendResponse();
-
-
-
+$response = $agendaApp->handle($request);
+\Dawan\http\ResponseSender::send($response);
