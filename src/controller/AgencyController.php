@@ -6,23 +6,31 @@ use Dawan\AgendaApp;
 use Dawan\model\AgencyManager;
 use GuzzleHttp\Psr7\Response;
 
-class AgencyController {
+class AgencyController
+{
 
-
-  public function listAgencies() {
+  public function listAgencies()
+  {
     $manager = new AgencyManager();
 
     $agencies = $manager->findAll();
 
-    ob_start();
-    include AgendaApp::getSourceDir() . '/view/listAgencies.php';
-    $output = ob_get_clean();
+    $output = $this->render('listAgencies', ['agencies' => $agencies]);
 
     return new Response(
       200,
       [],
       $output
     );
+  }
+
+  private function render(string $templateFile, array $vars)
+  {
+    extract($vars);
+
+    ob_start();
+    include AgendaApp::getSourceDir() . '/view/' . $templateFile . '.php';
+    return ob_get_clean();
 
   }
 }
