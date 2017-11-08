@@ -8,11 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-  <h1>Liste des agences</h1>
-  <ul>
-    <?php foreach ($agencies as $agency): ?>
-      <li><a href="/detail"><?= $agency ?></a></li>
-    <?php endforeach; ?>
-  </ul>
+<a href="/">Retour</a>
+<div><?= $agencyInfo ?></div>
 </body>
 </html>

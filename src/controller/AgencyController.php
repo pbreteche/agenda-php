@@ -24,6 +24,18 @@ class AgencyController
     );
   }
 
+  public function detailAgency()
+  {
+
+    $output = $this->render('detailAgency', ['agencyInfo' => 'TEST']);
+
+    return new Response(
+      200,
+      [],
+      $output
+    );
+  }
+
   private function render(string $templateFile, array $vars)
   {
     extract($vars);

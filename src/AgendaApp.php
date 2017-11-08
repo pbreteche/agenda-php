@@ -2,8 +2,7 @@
 
 namespace Dawan;
 
-
-use Dawan\controller\AgencyController;
+use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -17,12 +16,17 @@ class AgendaApp
   {
     // chargement de configuration
 
-    // choix du contrôleur adapté
+    $router = new Router();
 
+    try {
+      $route = $router->getRouteFromRequest($request);
+    }
+    catch (\Exception $e) {
+      return new Response(404, [], '<span style="font-size:60px; color:darkred">Cette page n\'est pas la page que vous cherchez</span>');
+    }
+    $controllerInfo = explode('::', $route['controller']);
+    $controllerInstance = new $controllerInfo[0]();
 
-    $controller = new AgencyController();
-
-    return $controller->listAgencies();
-
+    return call_user_func([$controllerInstance, $controllerInfo[1]], $route['args']);
   }
 }
